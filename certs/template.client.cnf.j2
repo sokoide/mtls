@@ -1,0 +1,23 @@
+[req]
+default_bits = 2048
+default_md = sha256
+prompt = no
+distinguished_name = req_distinguished_name
+x509_extensions = v3_ca
+
+[req_distinguished_name]
+C = JP
+ST = Tokyo
+L = Tokyo
+O = sokoide
+CN = {{ environ('CN')}}
+
+[v3_ca]
+subjectKeyIdentifier = hash
+authorityKeyIdentifier = keyid:always,issuer:always
+basicConstraints = critical, CA:true, pathlen:0
+keyUsage = critical, digitalSignature, cRLSign, keyCertSign
+
+[usr_cert]
+basicConstraints = CA:FALSE
+nsCertType = client, email, objsign
