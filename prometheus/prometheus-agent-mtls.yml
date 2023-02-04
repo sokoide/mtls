@@ -1,0 +1,16 @@
+# my global config
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+
+scrape_configs:
+  - job_name: "prometheus"
+    static_configs:
+      - targets: ["localhost:9090"]
+
+remote_write:
+  - url: "https://scottmm.local:9009/api/v1/push"
+    tls_config:
+      cert_file: /Users/scott/repo/sokoide/mtls/certs/user1/tls.crt
+      key_file: /Users/scott/repo/sokoide/mtls/certs/user1/tls.key
+      ca_file: /Users/scott/repo/sokoide/mtls/certs/ca/tls.crt
